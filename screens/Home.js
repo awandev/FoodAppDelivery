@@ -10,11 +10,12 @@ import {
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { COLORS, images, FONTS, icons, SIZES } from '../constant'
 
-const Home = () => {
+const Home = ({ navigation }) => {
+
 
     // dummy datas
     const initialCurrentLocation = {
-        streetName: "Kuching",
+        streetName: "Moncongloe",
         gps: {
             latitude: 1.5496614931250685,
             longitude: 110.36381866919922
@@ -387,7 +388,7 @@ const Home = () => {
                             borderRadius: SIZES.radius
                         }}
                     >
-                        <Text style={{ ...FONTS.h3 }}>{currentLocation.streetName}</Text>
+                        <Text style={{ ...FONTS.h3 }}>Makassar</Text>
                     </View>
                 </View>
 
@@ -482,7 +483,13 @@ const Home = () => {
     function renderRestaurantList() {
 
         const renderItem = ({ item }) => (
-            <TouchableOpacity style={{ marginBottom: SIZES.padding * 2 }}>
+            <TouchableOpacity
+                style={{ marginBottom: SIZES.padding * 2 }}
+                onPress={() => navigation.navigate("Restaurant", {
+                    item,
+                    currentLocation
+                })}
+            >
                 <View style={{
                     marginBottom: SIZES.padding
                 }}>
