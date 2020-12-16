@@ -551,6 +551,22 @@ const Home = () => {
                     </View>
 
 
+                    {/* price */}
+                    {
+                        [1, 2, 3].map((priceRating) => (
+                            <Text
+                                key={priceRating}
+                                style={{
+                                    ...FONTS.body3,
+                                    color: (priceRating <= item.priceRating) ? COLORS.black : COLORS.darkgray
+                                }}
+                            >
+                                $
+                            </Text>
+                        ))
+                    }
+
+
                 </View>
 
             </TouchableOpacity>
