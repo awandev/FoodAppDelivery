@@ -105,12 +105,9 @@ const Restaurant = ({ route, navigation }) => {
                     restaurant?.menu.map((item, index) => (
                         <View
                             key={`menu-${index}`}
-                            style={{
-                                alignItems: 'center'
-                            }}>
-                            <View style={{
-                                height: SIZES.height * 0.35
-                            }}>
+                            style={{ alignItems: 'center' }}
+                        >
+                            <View style={{ height: SIZES.height * 0.35 }}>
                                 <Image
                                     source={item.photo}
                                     resizeMode="cover"
@@ -141,6 +138,7 @@ const Restaurant = ({ route, navigation }) => {
                                             borderTopLeftRadius: 25,
                                             borderBottomLeftRadius: 25
                                         }}
+                                        onPress={() => editOrder("-", item.menuId, item.price)}
                                     >
                                         <Text style={{ ...FONTS.body1 }}>-</Text>
                                     </TouchableOpacity>
@@ -157,14 +155,15 @@ const Restaurant = ({ route, navigation }) => {
 
                                     </View>
 
-                                    <TouchableOpacity style={{
-                                        width: 50,
-                                        backgroundColor: COLORS.white,
-                                        alignItems: 'center',
-                                        justifyContent: 'center',
-                                        borderTopRightRadius: 25,
-                                        borderBottomRightRadius: 25,
-                                    }}>
+                                    <TouchableOpacity
+                                        style={{
+                                            width: 50,
+                                            backgroundColor: COLORS.white,
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            borderTopRightRadius: 25,
+                                            borderBottomRightRadius: 25
+                                        }}>
                                         <Text style={{ ...FONTS.body1 }}>-</Text>
                                     </TouchableOpacity>
 
@@ -174,12 +173,14 @@ const Restaurant = ({ route, navigation }) => {
 
 
                             {/* body description */}
-                            <View style={{
-                                width: SIZES.width,
-                                alignItems: 'center',
-                                marginTop: 15,
-                                paddingHorizontal: SIZES.padding * 2
-                            }}>
+                            <View
+                                style={{
+                                    width: SIZES.width,
+                                    alignItems: 'center',
+                                    marginTop: 15,
+                                    paddingHorizontal: SIZES.padding * 2
+                                }}
+                            >
                                 <Text style={{
                                     marginVertical: 10,
                                     textAlign: 'center',
@@ -198,7 +199,7 @@ const Restaurant = ({ route, navigation }) => {
                             <View
                                 style={{
                                     flexDirection: 'row',
-                                    marginTop: 10,
+                                    marginTop: 10
                                 }}
                             >
                                 <Image
@@ -206,15 +207,13 @@ const Restaurant = ({ route, navigation }) => {
                                     style={{
                                         width: 20,
                                         height: 20,
-                                        marginRight: 10,
+                                        marginRight: 10
                                     }}
                                 />
-                                <Text
-                                    style={{
-                                        ...FONTS.body3,
-                                        color: COLORS.darkgray,
-                                    }}
-                                >{item.calories.toFixed(2)} cal</Text>
+
+                                <Text style={{
+                                    ...FONTS.body3, color: COLORS.darygray
+                                }}>{item.calories.toFixed(2)} cal</Text>
                             </View>
 
 
@@ -285,7 +284,99 @@ const Restaurant = ({ route, navigation }) => {
                 {
                     renderDots()
                 }
+                <View
+                    style={{
+                        backgroundColor: COLORS.white,
+                        borderTopLeftRadius: 40,
+                        borderTopRightRadius: 40
+                    }}
+                >
+                    <View
+                        style={{
+                            flexDirection: 'row',
+                            justifyContent: 'space-between',
+                            paddingVertical: SIZES.padding * 2,
+                            paddingHorizontal: SIZES.padding * 3,
+                            borderBottomColor: COLORS.lightGray2,
+                            borderBottomWidth: 1
+                        }}
+                    >
+                        <Text style={{ ...FONTS.h3 }}>items in Cart</Text>
+                        <Text style={{ ...FONTS.h3 }}>$45</Text>
+                    </View>
+
+                    <View
+                        style={{
+                            flexDirection: 'row',
+                            justifyContent: 'space-between',
+                            paddingVertical: SIZES.padding * 2,
+                            paddingHorizontal: SIZES.padding * 3
+                        }}
+                    >
+                        <View style={{ flexDirection: 'row' }}>
+                            <Image
+                                source={icons.pin}
+                                resizeMode="contain"
+                                style={{
+                                    width: 20,
+                                    height: 20,
+                                    tintColor: COLORS.darkgray
+                                }}
+                            />
+                            <Text style={{ marginLeft: SIZES.padding, ...FONTS.h4 }}>Location</Text>
+                        </View>
+
+
+
+
+
+                        <View style={{ flexDirection: 'row' }}>
+                            <Image
+                                source={icons.master_card}
+                                resizeMode="contain"
+                                style={{
+                                    width: 20,
+                                    height: 20,
+                                    tintColor: COLORS.darkgray,
+                                }}
+                            />
+                            <Text style={{ marginLeft: SIZES.padding, ...FONTS.h4 }}>888</Text>
+                        </View>
+                    </View>
+
+
+                    {/* Order Button */}
+                    <View
+                        style={{
+                            padding: SIZES.padding * 2,
+                            alignItems: 'center',
+                            justifyContent: 'center'
+                        }}
+                    >
+                        <TouchableOpacity
+                            style={{
+                                width: SIZES.width * 0.9,
+                                padding: SIZES.padding,
+                                backgroundColor: COLORS.primary,
+                                alignItems: 'center',
+                                borderRadius: SIZES.radius
+                            }}
+                            onPress={() => navigation.navigate("OrderDelivery", {
+                                restaurant: restaurant,
+                                currentLocation: currentLocation
+                            })}
+                        >
+                            <Text style={{ color: COLORS.white, ...FONTS.h2 }}>Order</Text>
+                        </TouchableOpacity>
+                    </View>
+
+
+                </View>
+
+
             </View>
+
+
         )
     }
 
